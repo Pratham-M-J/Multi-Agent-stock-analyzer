@@ -2,7 +2,7 @@
 
 **Empowering smarter investment decisions with AI-driven agents.**
 
-This project is an end-to-end platform for automated stock analysis and investment advisory, leveraging a multi-agent architecture (CrewAI) to orchestrate research, analytics, and actionable recommendations. The system integrates real-time data sources, advanced sentiment analysis, and extensible tooling—making it a robust foundation for both retail investors and quant developers.
+This project is an end-to-end platform for automated stock analysis and investment advisory, leveraging a multi-agent architecture (CrewAI) to orchestrate research, analytics, and actionable recommendations. The system integrates real-time data sources, advanced sentiment analysis, and extensible tooling, making it a robust foundation for both retail investors and quant developers.
 
 ---
 
@@ -15,7 +15,7 @@ This project is an end-to-end platform for automated stock analysis and investme
 - **Actionable Investment Guidance:**  
   Generates clear, graded advice (Buy, Hold, Sell) with supporting rationale and risk summary.
 - **Extensible Tools:**  
-  Modular integration with search, scraping, and sentiment tools—plus planned support for broker APIs (e.g. Zerodha).
+  Modular integration with search, scraping, and sentiment tools, plus planned support for broker APIs (e.g. Zerodha).
 - **Live Data, Not Cached:**  
   Ensures every analysis is based on fresh, real-world signals.
 
