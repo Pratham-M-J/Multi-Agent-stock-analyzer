@@ -123,8 +123,6 @@ This is a work-in-progress towards a fully autonomous, AI-native trading platfor
 
 ## 🙌 Join the Evolution
 
-Interested in AI, trading, LLMs, or financial automation?  
-Collaborate with us—help build the next generation of autonomous investment platforms!
 
 ---
 
