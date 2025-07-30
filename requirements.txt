@@ -4,3 +4,5 @@ langchain-community
 langchain-google-genai
 langchain-openai
 langchain-groq
+asyncpraw
+dotenv
