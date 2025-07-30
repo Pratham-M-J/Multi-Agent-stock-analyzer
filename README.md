@@ -117,15 +117,6 @@ We're actively working on integrating the Zerodha Kite Connect API to enable:
   Execute trades based on AI-generated signals like:  
   _"Buy HDFCBANK if news sentiment > 0.8 and RSI < 30"_
 
----
-
-### 🔍 What’s Next?
-
-- Add support for **additional markets and instruments**: ETFs, crypto, commodities.
-- Integrate **Telegram/Discord alert bots** for real-time trade suggestions.
-- Extend **portfolio evaluator** for multi-user comparisons and benchmark scoring.
-- Add **agent retraining capability**: evolve strategies based on historical performance.
-- Build a **web UI or CLI interface** for configuration and monitoring.
 
 ---
 
