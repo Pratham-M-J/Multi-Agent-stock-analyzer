@@ -72,7 +72,7 @@ print(result)
 ```
 
 - Change `"stock": "RELIANCE"` to any ticker or company name of interest.
-- Agents, tools, and logic are modular—customize for your needs!
+- Agents, tools, and logic are modular, customize for your needs!
 
 ---
 
@@ -90,7 +90,7 @@ print(result)
 ## 🛣️ Roadmap
 
 - ✅ Broker API integration (Zerodha Kite Connect) for live trading and portfolio management.
-- ✅ Strategy automation—run trades on agent-generated signals.
+- ✅ Strategy automation, run trades on agent-generated signals.
 - 🔜 Advanced sentiment and alternative data sources (Twitter, global feeds).
 - 🔜 Multi-agent RL for evolving trading strategies.
 
@@ -115,15 +115,13 @@ This is a work-in-progress towards a fully autonomous, AI-native trading platfor
 
 ## ⚠️ Disclaimer
 
-- All API keys required—**set them in your `.env` file**.
-- Analyses use live data—no stale/cached information.
+- All API keys required, **set them in your `.env` file**.
+- Analyses use live data, no stale/cached information.
 - Data-driven suggestions only; always cross-check before making investment decisions.
 
 ---
 
 ## 🙌 Join the Evolution
-
-
 ---
 
 **Sample Output:**  
