@@ -95,4 +95,46 @@ Output: Complete research, analytics, and an investment recommendation for Relia
 
 ---
 
+## 👋 Contributing / Next Steps
+
+This project is a work-in-progress towards building a fully autonomous, multi-agent-based trading and analysis system. Here’s where it’s headed, and how you can contribute:
+
+### 🔁 Upcoming Integrations
+
+#### ✅ Zerodha Kite Connect (In Progress)
+We're actively working on integrating the Zerodha Kite Connect API to enable:
+
+- **Authentication & Token Management**  
+  Secure OAuth2 token handling for user login and broker session creation.
+
+- **Live Order Execution**  
+  Ability to place market, limit, and stop-loss orders directly from the AI's analysis.
+
+- **PnL and Position Monitoring**  
+  Live tracking of your portfolio holdings, MTM, and exit points.
+
+- **Strategy Automation**  
+  Execute trades based on AI-generated signals like:  
+  _"Buy HDFCBANK if news sentiment > 0.8 and RSI < 30"_
+
+---
+
+### 🔍 What’s Next?
+
+- Add support for **additional markets and instruments**: ETFs, crypto, commodities.
+- Integrate **Telegram/Discord alert bots** for real-time trade suggestions.
+- Extend **portfolio evaluator** for multi-user comparisons and benchmark scoring.
+- Add **agent retraining capability**: evolve strategies based on historical performance.
+- Build a **web UI or CLI interface** for configuration and monitoring.
+
+---
+
+### 💻 Get Involved
+
+If you’re interested in algo trading, LLMs, financial agents, or building AI-native brokerage interfaces:
+
+- **Clone this repo and try it out locally**
+- **Open issues** for bugs, suggestions, or new features
+- **Submit PRs** with new tools (scrapers, metrics, data pipelines, agent improvements)
+- Collaborate on advanced features like **multi-agent RL for trade strategy evolution**
 
