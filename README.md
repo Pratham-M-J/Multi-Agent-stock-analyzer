@@ -1,131 +1,132 @@
-# Multi-Agent Stock Analysis & Advisory Platform
+# Multi-Agent Stock Analyzer
 
-This repository delivers an **AI-powered pipeline for end-to-end stock research, analysis, and investment recommendations**. Built on CrewAI, it uses several agents, each tasked with a specific part of the financial due diligence process, combining real-time web data, news, quantitative analysis, and sentiment checks.
+**Empowering smarter investment decisions with AI-driven agents.**
 
----
-
-## 🚦 Overview
-
-- **Automates stock research** by collecting and analyzing:
-  - The latest global news (geopolitics, government actions)
-  - Company financials and key metrics
-  - Social and news sentiment (via Reddit, GNews)
-  - Market/technical/fundamental signals
-- **Generates clear, actionable investment guidance** (Strong Buy, Buy, Hold, etc.)
-- **Planned features:** Broker account integration (e.g., Zerodha) and portfolio analytics
+This project is an end-to-end platform for automated stock analysis and investment advisory, leveraging a multi-agent architecture (CrewAI) to orchestrate research, analytics, and actionable recommendations. The system integrates real-time data sources, advanced sentiment analysis, and extensible tooling—making it a robust foundation for both retail investors and quant developers.
 
 ---
 
-## 🏗 System Structure
+## 🚀 Key Features
+
+- **Automated Stock Research:**  
+  Aggregates up-to-the-minute market news, company financials, and sentiment signals from sources like Reddit and GNews.
+- **Multi-Agent Analysis Pipeline:**  
+  Specialized agents for data gathering, financial/technical analysis, and decision recommendation.
+- **Actionable Investment Guidance:**  
+  Generates clear, graded advice (Buy, Hold, Sell) with supporting rationale and risk summary.
+- **Extensible Tools:**  
+  Modular integration with search, scraping, and sentiment tools—plus planned support for broker APIs (e.g. Zerodha).
+- **Live Data, Not Cached:**  
+  Ensures every analysis is based on fresh, real-world signals.
+
+---
+
+## 🧠 System Architecture
 
 ### Agents
 
-| Agent               | Role & Function                                                                                         |
-|---------------------|--------------------------------------------------------------------------------------------------------|
-| Market Data Researcher | Gathers up-to-date news, financials, and industry info. No assumptions—fresh data only.                 |
-| Analyst             | Performs both fundamental (P/E, growth) and technical (price/trend) analysis; assesses risks & upsides. |
-| Decision Advisor    | Generates a high-level investment report & actionable recommendation (with rationale & risk summary).    |
+| Agent                   | Responsibilities                                                                                      |
+|-------------------------|------------------------------------------------------------------------------------------------------|
+| **Market Data Researcher** | Scrapes and collects the latest news, financials, and sector insights for a given stock.             |
+| **Analyst**             | Runs both fundamental (P/E, growth, metrics) and technical analyses (trend, price signals).            |
+| **Decision Advisor**    | Synthesizes research and analysis into a human-readable investment report with clear recommendations.  |
 
-### Tools
+### Integrated Tools
 
-- **Scrape and Search Tool:** Hybrid Google search, link parser, and web data scraper (limited to 2 runs per research).
-- **NewsTool (GNews):** Shows latest macro/global headlines, tailored to stock or events.
-- **MarketSentimentTool:** Pulls Reddit posts and comments for real-world, crowd-driven sentiment.
-- **SerperDevTool:** Runs targeted search requests on scholarly/financial topics.
-- **Portfolio/Trade Automation (Planned):** Zerodha & portfolio review capability.
-
----
-
-## ⚙️ How to Use
-
-1. **Prerequisites**
-    - Python 3.9+
-    - Set environment variables for all API keys:
-        - `OPEN_AI_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `SERPER_API_KEY`, `GNEWS_KEY`, `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`
-2. **Install**
-    ```
-    pip install -r requirements.txt
-    ```
-3. **Run**
-    ```
-    from crewai import Crew
-    # Make sure agents/tasks are imported
-    result = crew.kickoff(inputs={"stock": "OlaElectric"})
-    print(result)
-    ```
-4. **Customize**
-    - Change `"stock": "OlaElectric"` to any ticker or company name.
-    - Modify/extend agents, tools, or logic as desired.
+- **Scrape & Search Tool:**  
+  Hybrid web search, scraper, and parser for gathering real-time data.
+- **NewsTool (GNews):**  
+  Macro/global headlines focused on relevant stocks/events.
+- **MarketSentimentTool:**  
+  Reddit-based sentiment extraction for crowd psychology.
+- **SerperDevTool:**  
+  Targeted scholarly/financial search.
+- **Planned:**  
+  Broker integration (Zerodha), portfolio analytics, and additional social data feeds.
 
 ---
 
-## 🟢 Outputs
+## ⚙️ Getting Started
 
-- **Research summary:** Latest news, events, and core company data.
-- **Analysis report:** In-depth, metric-heavy, with tables or visual summaries.
-- **Investment report:** Actionable and graded advice—BUY, SELL, HOLD, etc.—with concise risks/opportunities.
+### Prerequisites
 
----
+- Python 3.9+
+- API keys for all integrated services:
+  - `OPEN_AI_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `SERPER_API_KEY`, `GNEWS_KEY`, `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`
+- Set environment variables in your `.env` file.
 
-## 📦 Roadmap & Extensibility
+### Installation
 
-- Plug in other broking APIs to automate real trades.
-- Ask the system to review your portfolio or rate its risk/reward.
-- Add advanced data or social sentiment tools (Twitter, global feeds).
+```bash
+pip install -r requirements.txt
+```
 
----
+### Usage
 
-Output: Complete research, analytics, and an investment recommendation for Reliance.
+```python
+from crewai import Crew
 
----
+# Prepare agents and tasks as per your use-case
+result = crew.kickoff(inputs={"stock": "RELIANCE"})
+print(result)
+```
 
-## 🛑 Important
-
-- **API keys required for all tools**—set in `.env`.
-- No outdated/cached—always-live data.
-- This system provides **data-driven suggestions**; always cross-check major investment decisions.
-
----
-
-## 👋 Contributing / Next Steps
-
-- Add scrapers, analytics, and broker connectors.
-- Extend to more markets and asset classes.
-- Join in to evolve the next-gen investment pipeline!
+- Change `"stock": "RELIANCE"` to any ticker or company name of interest.
+- Agents, tools, and logic are modular—customize for your needs!
 
 ---
 
-## 👋 Contributing / Next Steps
+## 📊 Outputs
 
-This project is a work-in-progress towards building a fully autonomous, multi-agent-based trading and analysis system. Here’s where it’s headed, and how you can contribute:
-
-### 🔁 Upcoming Integrations
-
-#### ✅ Zerodha Kite Connect (In Progress)
-We're actively working on integrating the Zerodha Kite Connect API to enable:
-
-- **Authentication & Token Management**  
-  Secure OAuth2 token handling for user login and broker session creation.
-
-- **Live Order Execution**  
-  Ability to place market, limit, and stop-loss orders directly from the AI's analysis.
-
-- **PnL and Position Monitoring**  
-  Live tracking of your portfolio holdings, MTM, and exit points.
-
-- **Strategy Automation**  
-  Execute trades based on AI-generated signals like:  
-  _"Buy HDFCBANK if news sentiment > 0.8 and RSI < 30"_
-
+- **Research Summary:**  
+  Concise aggregation of latest news, events, and company fundamentals.
+- **Analysis Report:**  
+  Metric-heavy, with tables or visual summaries.
+- **Investment Recommendation:**  
+  Graded advice (Buy/Sell/Hold), rationale, and risk/opportunity breakdown.
 
 ---
 
-### 💻 Get Involved
+## 🛣️ Roadmap
 
-If you’re interested in algo trading, LLMs, financial agents, or building AI-native brokerage interfaces:
+- ✅ Broker API integration (Zerodha Kite Connect) for live trading and portfolio management.
+- ✅ Strategy automation—run trades on agent-generated signals.
+- 🔜 Advanced sentiment and alternative data sources (Twitter, global feeds).
+- 🔜 Multi-agent RL for evolving trading strategies.
 
-- **Clone this repo and try it out locally**
-- **Open issues** for bugs, suggestions, or new features
-- **Submit PRs** with new tools (scrapers, metrics, data pipelines, agent improvements)
-- Collaborate on advanced features like **multi-agent RL for trade strategy evolution**
+---
 
+## 🧩 Extending & Contributing
+
+This is a work-in-progress towards a fully autonomous, AI-native trading platform.
+
+**Ways to contribute:**
+- Build new tools (scrapers, analytics, alternative data integrations)
+- Expand agent logic for new asset classes or markets
+- Help with broker API integrations
+- Collaborate on reinforcement learning or advanced strategy modules
+
+**Get involved:**
+- Fork or clone the repo and run locally
+- Open issues for bugs, feature requests, or suggestions
+- Submit pull requests for improvements
+
+---
+
+## ⚠️ Disclaimer
+
+- All API keys required—**set them in your `.env` file**.
+- Analyses use live data—no stale/cached information.
+- Data-driven suggestions only; always cross-check before making investment decisions.
+
+---
+
+## 🙌 Join the Evolution
+
+Interested in AI, trading, LLMs, or financial automation?  
+Collaborate with us—help build the next generation of autonomous investment platforms!
+
+---
+
+**Sample Output:**  
+_Automated research, analysis, and investment recommendation for Reliance Industries._
