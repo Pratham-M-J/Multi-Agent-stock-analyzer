@@ -8,4 +8,4 @@ crew = Crew(
     verbose = True
 )
 
-result = crew.kickoff(inputs = {"stock" :"NVIDIA_CORP"})
+result = crew.kickoff(inputs = {"stock" :"OlaElectric"})

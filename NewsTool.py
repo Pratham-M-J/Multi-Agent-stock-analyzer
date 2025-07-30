@@ -25,4 +25,8 @@ class NewsTool(BaseTool):
         response = ""
         for article in articles:
           response += f"Title:{article['title']}\n Description: {article['description']} \n Date: {article['publishedAt']} \n URL: {article['url']}\n\n"
-    return response
+
+        return response if response else "No news found for the given stock."
+    
+
+

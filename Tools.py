@@ -2,16 +2,19 @@ from dotenv import load_dotenv
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from crewai.tools import BaseTool
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 load_dotenv()
 import os
 
 serper_api_key = os.environ['SERPER_API_KEY'] 
-google_api_key = os.getenv("GOOGLE_API_KEY")
+google_api_key = os.environ["GOOGLE_API_KEY"]
+groq_api_key = os.environ["GROQ_API_KEY"]
 
-llm = ChatGoogleGenerativeAI(
-    api_key=google_api_key,
-    model="gemini-2.0-flash",
+
+llm = ChatGroq(
+    groq_api_key=groq_api_key,
+    model="llama-3.1-8b-instant",
 )
 
 promptTemplate = PromptTemplate(
@@ -41,7 +44,7 @@ web_scrape_tool = ScrapeWebsiteTool()
 
 search_tool = SerperDevTool(
     search_url="https://google.serper.dev/scholar",
-    n_results=10,
+    n_results=5,
     api_key = serper_api_key
 )
 
@@ -60,11 +63,13 @@ class Scrape_and_Search_Tool(BaseTool):
         response = qa_chain.invoke({"data": data})
         links_text = response.content.strip().strip("[]")
         links = [link.strip().strip("'").strip('"') for link in links_text.split(",")]
+        print(links)
 
         # 3. Scrape all links
         scraped_data = []
         for link in links:
-            if link:  # basic safety
+            if link: 
+                print(link) # basic safety
                 try:
                     x = web_scrape_tool.run(website_url = link)
                     y = extraction_chain.invoke({"data": x, "stock": stock})
@@ -76,4 +81,6 @@ class Scrape_and_Search_Tool(BaseTool):
         return "\n".join(scraped_data)
     
 
-scrape_and_search_tool = Scrape_and_Search_Tool()
+
+
+

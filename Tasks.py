@@ -8,6 +8,7 @@ research = Task(
         "2. Identify and specify the market segment or industry to which the {stock} belongs.\n"
         "3. Collect recent financial data, earnings reports, and key performance indicators from reputable sources.\n"
         "4. Analyze market sentiment by reviewing news, social media, and expert commentary relevant to the {stock}."
+        "5. Use the Scrape and Search Tool to gather this information, ensuring that you only use it twice. If you cannot find global news, end the process and provide the data you have gathered."
     ),
     expected_output = (
         "A well-organized summary containing:\n"
@@ -17,7 +18,8 @@ research = Task(
         "- A brief analysis of current market sentiment, including highlights from news, social media, and expert opinions."
     ),
     name = "Research",
-    agent = Researcher
+    agent = Researcher,
+    
 )
 
 analysis = Task(
@@ -35,7 +37,8 @@ analysis = Task(
         "- A concise summary of overall stock outlook based on the analysis."
     ),
     name = "Analysis",
-    agent = Analyst
+    agent = Analyst,
+    context=(research,)
 )
 
 
@@ -45,6 +48,8 @@ reporting = Task(
         "2. Summarize the most important insights in clear, jargon-free language.\n"
         "3. Provide actionable recommendations for investors, such as buy/hold/sell guidance, with supporting rationale.\n"
         "4. Highlight any critical risks, uncertainties, or factors that could affect investment decisions."
+        "5. If it's a buy, say BUY, if it's a hold, say HOLD, if it's a sell, say SELL"
+        "6. Use quantitative metrics like Strong Buy, Buy, Hold, Sell, Strong Sell to indicate the strength of the recommendation."
     ),
     expected_output = (
         "A concise investment report that includes:\n"
@@ -54,6 +59,8 @@ reporting = Task(
         "- Well-structured sections for easy reading and decision-making."
     ),
     name = "Reporting",
-    agent = DecisionAdvisor
+    agent = DecisionAdvisor,
+    context= (research, analysis)
+
 )
 
