@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
+from SentimentTool import MarketSentimentTool
 load_dotenv()
 from NewsTool import NewsTool
 import os
@@ -14,6 +15,8 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 
 scrape_and_search_tool = Scrape_and_Search_Tool()
 news_tool = NewsTool()
+sentiment_tool = MarketSentimentTool()
+
 Researcher = Agent(
     role = "Market Data Researcher",
     goal = "Retrieve the most relevant and up-to-date information about the specified {stock} from trusted online sources.",
@@ -21,10 +24,11 @@ Researcher = Agent(
                 "Your mission is to conduct thorough research by sourcing accurate and current data from reputable financial news sites, stock exchanges, and official company reports. "
                 "Your meticulous research ensures that all subsequent analysis is based on reliable, comprehensive information, forming the essential foundation for the rest of the stock analysis process."
                 "MAKE NO ASSUMPTIONS, Always search web and get recent data"
-                "You can use the scrape_and_search tool only twice not more than that, even if the global news isn't found, you should end the process and give the data u have gathered.",
+                "You can use the scrape_and_search tool only twice not more than that, even if the global news isn't found, you should end the process and give the data u have gathered."
+                "Use market sentiment tool to fetch the sentiment of the stock from Reddit",
     allow_delegation = False,
     verbose = True,
-    tools = [scrape_and_search_tool, news_tool],
+    tools = [scrape_and_search_tool, news_tool,sentiment_tool],
     llm = LLM(
         api_key = open_api_key,
         model = "openai/gpt-4o",
@@ -37,7 +41,8 @@ Analyst = Agent(
     backstory = "You’re collaborating on a stock analysis project focused on the company: {stock}. "
                 "Your task is to interpret and evaluate the raw information collected by the Market Data Researcher, "
                 "using financial analysis techniques to provide meaningful insights. "
-                "Your analysis is crucial for the Decision Advisor to craft a clear and actionable investment report on this stock.",
+                "Your analysis is crucial for the Decision Advisor to craft a clear and actionable investment report on this stock."
+                "Look at the market sentiment and news gathered by the Researcher, and analyze the stock's performance, trends, and potential opportunities or risks.",
     allow_delegation = False,
     verbose = True,
     tools = [scrape_and_search_tool],
@@ -56,7 +61,8 @@ DecisionAdvisor = Agent(
     goal = "Summarize the analysis into a concise report with actionable insights and recommendations for the given {stock}.",
     backstory = "You’re collaborating on a stock analysis project focused on the company: {stock} "
                 "Your task is to synthesize the findings from the Financial Analyst into a clear, well-structured report. "
-                "Your report empowers investors to quickly understand the stock’s outlook and make informed decisions.",
+                "Your report empowers investors to quickly understand the stock’s outlook and make informed decisions."
+                "consider the market sentiment but focus more on the company financials and potential risks before giving the report",
     allow_delegation = False,
     verbose = True,
     llm = LLM(

@@ -30,3 +30,11 @@ class NewsTool(BaseTool):
     
 
 
+class RedditNewsTool(BaseTool):
+  name: str = "Market news Tool Reddit"
+  description: str = (
+    "This tool fetches Reddit posts from specified subreddits ba"
+    "Parameters : stock (str): The stock keyword to search for."
+    "Returns a List[dict]: A list of Market sentiment analysis for every post."
+
+  )
