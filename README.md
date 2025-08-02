@@ -1,5 +1,7 @@
 # Multi-Agent Stock Analyzer
 
+![System Architecture](Output_screenshots/flow.jpeg)  
+
 **Empowering smarter investment decisions with AI-driven agents.**
 
 This project is an end-to-end platform for automated stock analysis and investment advisory, leveraging a multi-agent architecture (CrewAI) to orchestrate research, analytics, and actionable recommendations. The system integrates real-time data sources, advanced sentiment analysis, and extensible tooling, making it a robust foundation for both retail investors and quant developers.
