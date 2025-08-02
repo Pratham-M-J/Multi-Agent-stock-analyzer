@@ -1,14 +1,13 @@
 from crewai import Task
 from Tools import web_scrape_tool, search_tool
-from Agents import Researcher, Analyst, DecisionAdvisor
+from Agents import Researcher, Analyst, DecisionAdvisor, Sentiment_analyser
 
 research = Task(
     description = (
         "1. Prioritize gathering the latest news and major global events that could impact the {stock}, with special attention to US government actions and geopolitical conflicts.\n"
         "2. Identify and specify the market segment or industry to which the {stock} belongs.\n"
         "3. Collect recent financial data, earnings reports, and key performance indicators from reputable sources.\n"
-        "4. Analyze market sentiment by reviewing news, social media, and expert commentary relevant to the {stock}."
-        "5. Use the Scrape and Search Tool to gather this information, ensuring that you only use it twice. If you cannot find global news, end the process and provide the data you have gathered."
+        "4. Use the Scrape and Search Tool to gather this information, ensuring that you only use it twice. If you cannot find global news, end the process and provide the data you have gathered."
     ),
     expected_output = (
         "A well-organized summary containing:\n"
@@ -20,6 +19,24 @@ research = Task(
     name = "Research",
     agent = Researcher,
     
+)
+
+sentiment_analysis = Task(
+    description = (
+        "1. Analyze the sentiment of the stock {stock} based on Reddit posts and comments.\n"
+        "2. Use the Market Sentiment Tool to fetch relevant posts from subreddits like r/stocks, r/investing, and r/wallstreetbets.\n"
+        "3. Summarize the overall market sentiment, highlighting major themes, positive and negative trends, and influential posts or users."
+    ),
+    expected_output = (
+        "A detailed sentiment analysis report that includes:\n"
+        "- Key themes and trends in market sentiment for {stock}.\n"
+        "- Positive and negative sentiment indicators with examples from Reddit posts.\n"
+        "- Influential users or posts that significantly impact sentiment.\n"
+        "- An actionable summary of how the online investment community views {stock}."
+    ),
+    name = "Sentiment Analysis",
+    agent = Sentiment_analyser,
+    context=(research,)
 )
 
 analysis = Task(
@@ -38,7 +55,7 @@ analysis = Task(
     ),
     name = "Analysis",
     agent = Analyst,
-    context=(research,)
+    context=(research, sentiment_analysis)
 )
 
 

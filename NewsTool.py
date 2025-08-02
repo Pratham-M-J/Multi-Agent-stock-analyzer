@@ -29,3 +29,4 @@ class NewsTool(BaseTool):
         return response if response else "No news found for the given stock."
     
 
+

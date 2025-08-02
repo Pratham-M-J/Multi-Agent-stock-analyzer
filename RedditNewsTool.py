@@ -118,6 +118,3 @@ Top Comments: {top_comments}
 
         return responses or ["No significant global, stock market, or business news identified."]
 
-
-x = RedditNewsTool()
-asyncio.run(x._run())
