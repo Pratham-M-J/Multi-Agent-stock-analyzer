@@ -6,3 +6,8 @@ langchain-openai
 langchain-groq
 asyncpraw
 dotenv
+chromadb 
+openai
+sentence-transformers
+langchain
+streamlit
